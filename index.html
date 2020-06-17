@@ -134,24 +134,54 @@
         }
     </script>
 
-    <script type="text/javascript">
-        var divobj=document.getElementById('dtime');
-        //定时器的用法
-        setInterval("settime()",1000);   //每秒
-        function settime(){
-        var node = new Date();
-        var y=node.getFullYear();
-        var m=(node.getMonth()+1);
-        var d=node.getDate();
-        var h=node.getHours();
-        var i=node.getMinutes();
-        var s=node.getSeconds();
-        var date=y+"年"+m+"月"+d+"日"
-        var time="当前时间:" + (m+"月"+d+"日"+h+":"+i+":"+s);
-        var divVal=divobj.innerHTML=time;
-        document.getElementById("date1").innerHTML = date;
-        document.getElementById("date2").innerHTML = date;
+<script type="text/javascript">
+    var divobj=document.getElementById('dtime');
+    //定时器的用法
+    //        // 补0
+    var str_s = "0"
+    var str_h = "0"
+    var str_i = "0"
+    setInterval("settime()",1000);   //每秒
+    function settime(){
+    var node = new Date();
+    var y=node.getFullYear();
+    var m=(node.getMonth()+1);
+    var d=node.getDate();
+    var h=node.getHours();
+    var i=node.getMinutes();
+    var s=node.getSeconds();
+    var date=y+"年"+m+"月"+d+"日"
+
+
+    if (s<10)
+    {
+        str_s = "0" + String(s)
+    }else
+    {
+        str_s = String(s)
     }
-    </script>
+
+    if (i<10)
+    {
+        str_i = "0"+String(i)
+    }else
+    {
+        str_i = String(i)
+    }
+
+    if (h>12)
+    {
+        var time="当前时间:" + (m+"月"+d+"日 下午 "+(h-12)+":"+str_i+":"+str_s);
+    }
+    else
+    {
+        var time="当前时间:" + (m+"月"+d+"日 上午 "+h+":"+str_i+":"+str_s);
+    }
+    
+    var divVal=divobj.innerHTML=time;
+    document.getElementById("date1").innerHTML = date;
+    document.getElementById("date2").innerHTML = date;
+}
+</script>
 
 </body></html>
